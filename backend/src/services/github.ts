@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Request, Response} from 'express';
 
 interface repos{
     name: string,
@@ -14,7 +15,7 @@ async function getLanguages (url:string){
         console.log('[GET LANGUAGES]: ',error )
     }
 }
-async function getDataRepos(request:any, response:any){
+async function getDataRepos(request:Request, response:Response){
     try {
         // get data from github
         const { data } = await axios.get('https://api.github.com/users/Edupras/repos');
