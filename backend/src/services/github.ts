@@ -1,5 +1,10 @@
 import axios from 'axios';
 import { Request, Response} from 'express';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
+
+const githubToken = 'aca08f5b480d5a1e1c6bbaad9238ef57db17b7ac';
 
 interface repos{
     name: string,
@@ -8,13 +13,31 @@ interface repos{
 
 async function getLanguages (url:string){
     try {
-        const { data } = await axios.get(url)
-        return data
+        const { data } = await axios({
+            method:"GET",
+            url: url,
+
+            auth: {
+                username: 'edupras',
+                password: githubToken
+            }
+        }) 
+
+        return data 
     } catch (error) {
         console.log('[GET LANGUAGES]: ',error )
     }
 }
 
+async function getReposData(repos:repos[]){
+    const reposData = repos.map(
+        async (repository:repos) => {
+            const langs =  await getLanguages(repository.languages_url)
+            return {repo_name: repository.name, languages: langs}
+        }
+    )
+    return reposData;
+}
 
 const githubServices = {
 
@@ -22,19 +45,29 @@ const githubServices = {
 
         try {
             // get data from github
-            const { data } = await axios.get(`https://api.github.com/users/${username}/repos`);
-        
-            // get repos and languages used in
-            const user_repos = data.map(async (repo:repos)=>{
-                // for each repo get languages
-                await getLanguages(repo.languages_url)
-                    .then(lang => {
-                        console.log()
-                        return {repo:repo.name, languages:lang}
-                    } ) 
-                response.send({'message':'Got data'})           
+            const { data } = await axios({
+                method:"GET",
+                url: `https://api.github.com/users/${username}/repos`,
+
+                auth: {
+                    username: 'edupras',
+                    password: githubToken
+                }
+            })  
+                
+            const repos = data.map( (repo:repos)=> {
+                return {name: repo.name, languages_url:repo.languages_url}                
             })
-            return user_repos;
+
+            const reposData = await getReposData(repos);
+            
+            const toReturn = (async () => {
+                const finallyData = await Promise.all(reposData);
+                return finallyData
+              })();
+
+            return toReturn
+            
         } catch (error) {
             console.log('[GET REPOS]: ', error)
             return response.status(403).send({'message': 'Error'})

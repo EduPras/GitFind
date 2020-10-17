@@ -9,7 +9,7 @@ const userController = {
         const { username } = request.body;
         try{
             const user_data = await githubServices.getDataRepos(request, response, username);
-            console.log(user_data)
+            response.send(user_data).status(200)
         } catch(err){
             console.log('[USER CONTROLLER]: ', err)
             response.status(400).send({'Erro':err})
