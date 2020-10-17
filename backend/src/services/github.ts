@@ -9,31 +9,38 @@ interface repos{
 async function getLanguages (url:string){
     try {
         const { data } = await axios.get(url)
-        console.log('[GET LANGUAGES]: ', data)
         return data
     } catch (error) {
         console.log('[GET LANGUAGES]: ',error )
     }
 }
-async function getDataRepos(request:Request, response:Response){
-    try {
-        // get data from github
-        const { data } = await axios.get('https://api.github.com/users/Edupras/repos');
-    
-        // get repos and languages used in
-        data.map(async (repo:repos)=>{
-            // for each repo get languages
-            await getLanguages(repo.languages_url)
-                .then(lang => {
-                    console.log()
-                    return {repo:repo.name, languages:lang}
-                } )            
-        })
-        return response.send({'message':'Done'});
-    } catch (error) {
-        console.log('[GET REPOS]: ', error)
-        return response.status(403).send({'message': 'Error'})
-    } 
+
+
+const githubServices = {
+
+    async getDataRepos(request:Request, response:Response, username:string){
+
+        try {
+            // get data from github
+            const { data } = await axios.get(`https://api.github.com/users/${username}/repos`);
+        
+            // get repos and languages used in
+            const user_repos = data.map(async (repo:repos)=>{
+                // for each repo get languages
+                await getLanguages(repo.languages_url)
+                    .then(lang => {
+                        console.log()
+                        return {repo:repo.name, languages:lang}
+                    } ) 
+                response.send({'message':'Got data'})           
+            })
+            return user_repos;
+        } catch (error) {
+            console.log('[GET REPOS]: ', error)
+            return response.status(403).send({'message': 'Error'})
+        } 
+    }
+
 }
 
-export default getDataRepos;
+export default githubServices;

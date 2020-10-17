@@ -1,4 +1,4 @@
-import neo4j_driver from 'neo4j-driver';
+import neo4j from 'neo4j-driver';
 
-const driver =  neo4j_driver.driver('neo4j://localhost', neo4j_driver.auth.basic('gitfind', 'root'),{ encrypted : true});
+const driver =  neo4j.driver('bolt://localhost:7687', neo4j.auth.basic('neo4j', 'root'));
 export default driver;
