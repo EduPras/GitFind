@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const githubToken = 'aca08f5b480d5a1e1c6bbaad9238ef57db17b7ac';
+const githubToken = 'YOUR GITHUB TOKEN';
 
 interface repos{
     name: string,

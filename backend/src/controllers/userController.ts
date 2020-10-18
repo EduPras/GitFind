@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 
 
 const userController = {
-
+    // [PASSAR PARA FRONTEND]
     async index (request:Request, response:Response){
         const { username } = request.body;
         try{
@@ -16,19 +16,21 @@ const userController = {
         }      
     },
 
+    // Create an user
     async create (request:Request, response:Response) {
         const session = driver.session();
         const {
             user,
             repos,
-            techs
+            techs,
+            coordinates
         } = request.body;
     
         try {
             await session.writeTransaction(tx => {
                 tx.run(
                     `
-                     create(u:user{username:'${user}', latitude:'239223', longitude:'238021'})
+                     create(u:user{username:'${user}', latitude:'${coordinates[0]}', longitude:'${coordinates[1]}'})
                      return u.username
                     `
                 )   
