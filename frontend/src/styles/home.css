@@ -1,0 +1,64 @@
+#logo, .inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+.inputs button{
+    width: 280px;
+    height: 70px;
+    border-radius: 10px;
+    background: #0085FF;
+    color: white;
+    outline: none;
+    border: none;
+    font-size: 30px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.inputs .texts{
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 50px;
+    width: 70%;
+    align-items: flex-start;
+    
+}
+.inputs .texts h1{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 60px;
+    font-weight: 700;
+    
+}
+.inputs .texts span{
+    font-size: 40px;
+    font-family: 'Open Sans', sans-serif;
+    color: #969696;
+    font-weight: 400;
+}
+#sign{
+    margin-top: 10px;
+    background-color: transparent;
+    border: 2px solid #0085FF;
+    color: #0085FF;
+    transition: 0.25s;
+    font-weight: 100;
+}
+
+#sign:hover{
+    background-color: rgb(217, 233, 251);
+    border-color:  rgb(217, 233, 251);
+    transition: 0.25s;
+}
+#search{
+    font-weight: bold;
+}
+
+#search:hover{
+    background-color:#0454a0;
+    transition: 0.25s;
+}

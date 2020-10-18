@@ -1,0 +1,22 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+
+body{
+    background: url('./background.png');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+}
