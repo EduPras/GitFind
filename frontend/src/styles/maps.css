@@ -1,0 +1,31 @@
+#maps{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+#maps .leaflet-container{
+    position: absolute;
+    z-index: 5;
+}
+
+#maps input{
+    margin-top: 30px;
+    position: absolute;
+    width: 500px;
+    height: 30px;
+    padding: 10px;
+    z-index: 10;
+}
+
+.popup .leaflet-popup-content-wrapper{
+    background-color: #1d1d1d;
+    font-size: 1.1rem;
+    color: white;
+}
+
+.popup .leaflet-popup-tip{
+    background-color: #1d1d1d;
+}

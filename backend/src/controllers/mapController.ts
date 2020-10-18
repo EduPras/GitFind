@@ -48,7 +48,7 @@ const mapController = {
         try {
             const markers:any = await session.run(
                 `match(u:user)
-                 return [u.latitude, u.longitude]`
+                 return [u.latitude, u.longitude, u.username]`
             )
 
             const filtredMarkers:object = markers.records.map( (marker:any) => {

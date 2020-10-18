@@ -1,8 +1,4 @@
 import axios from 'axios';
-import { Request, Response} from 'express';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 const githubToken = 'your github token';
 
@@ -41,7 +37,7 @@ async function getReposData(repos:repos[]){
 
 const githubServices = {
 
-    async getDataRepos(request:Request, response:Response, username:string){
+    async getDataRepos(username:string){
 
         try {
             // get data from github
@@ -70,7 +66,7 @@ const githubServices = {
             
         } catch (error) {
             console.log('[GET REPOS]: ', error)
-            return response.status(403).send({'message': 'Error'})
+
         } 
     }
 

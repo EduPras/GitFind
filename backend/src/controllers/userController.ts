@@ -35,7 +35,7 @@ const userController = {
                     `
                 )   
     
-                repos.map( (repo:string) => {
+                repos.map( (repo:any) => {
                     return tx.run(
                         `
                             match(u:user{username:'${user}'})

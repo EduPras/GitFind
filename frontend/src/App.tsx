@@ -1,10 +1,10 @@
 import React from 'react';
-import './styles/global.css';
-import Home from './pages/home';
+import Routes from './routes';
+import './styles/global.css'
 
 function App() {
   return (
-    <Home/>
+    <Routes/>
   );
 }
 
