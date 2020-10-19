@@ -8,6 +8,7 @@ At first you will need to install the neo4j, it can be desktop or terminal. Once
 
 ## React
 Once inside the folder ```frontend``` run the command ```npm install```, and then ```npm start```
+
 <img src="/img/home.png" width="800" >
 
 ## Node
