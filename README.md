@@ -1,5 +1,3 @@
-
-![image](/img/home.png)
 # GitFind [STILL IN PROGRESS]
 The porpouse of this project consists to find using an interactive map devs in your region, and also their repositories, showing the title and languagues useds to build it.
 
