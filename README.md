@@ -1,4 +1,4 @@
-# GitFind [STILL IN PROGRESS]
+# GitFind
 The porpouse of this project consists to find using an interactive map devs in your region, and also their repositories, showing the title and languagues useds to build it.
 
 <img src="/img/map.png" width="800" >
